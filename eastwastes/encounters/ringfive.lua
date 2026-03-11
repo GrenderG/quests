@@ -27,7 +27,7 @@ function ScarbrowTimer(e)
 end
 
 function oracleTimer(e)
-	if(e.timer == "gogo") then
+	if(e.timer == "gogo" and not e.self:IsMezzed()) then
 		eq.ChooseRandom(eq.move_to(-346,-2630,172,0,true),eq.move_to(-409,-2670,179,0,true));
 		eq.stop_timer("gogo");
 	end
@@ -37,7 +37,7 @@ function oracleTimer(e)
 end
 
 function invaderTimer(e)
-	if(e.timer == "gogo") then
+	if(e.timer == "gogo" and not e.self:IsMezzed()) then
 		eq.ChooseRandom(eq.move_to(-391,-2623,176,0,true),eq.move_to(-374,-2664,176,0,true),eq.move_to(-407,-2647,178,0,true));
 		eq.stop_timer("gogo");
 	end
