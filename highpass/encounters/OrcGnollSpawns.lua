@@ -220,6 +220,26 @@ function GetRandomGnollSpawnLoc(t)
 	return x, y, z;
 end
 
+function GetGnollCount()
+	local npcList = eq.get_entity_list():GetNPCList();
+	local count = 0;
+	
+	if ( npcList ) then
+		for npc in npcList.entries do
+			if ( npc.valid ) then
+				local i = 1;
+				while ( GNOLL_TYPES[i] ) do
+					if ( GNOLL_TYPES[i] == npc:GetNPCTypeID() ) then
+						count = count + 1;
+					end
+					i = i + 1;
+				end
+			end
+		end
+	end
+	return count;
+end
+
 -- this adds a new grid to the NPC.  It will move to a location under the ramp then we'll add a grid from the database
 function GnollSpawnEvent(e)
 	if ( e.self:GetY() < 435 ) then
@@ -241,11 +261,11 @@ function GnollSpawnEvent(e)
 	end
 	
 	if ( not GNOLL_DUPE_GROUPS[e.self:GetSp2()] ) then
-		--eq.debug("refusing to duplicate a duplicate");
+		--eq.debug("refusing to duplicate a duplicate; current gnoll count == "..GetGnollCount());
 		return;
 	end
 	
-	if ( math.random(6) == 1 and #t > 12 ) then  -- 1 in 6 chance
+	if ( math.random(6) == 1 and #t > 12 and GetGnollCount() < 8 ) then  -- 1 in 6 chance.  idle zones will spawn endless gnolls so we check gnoll count
 	
 		local x, y, z = GetRandomGnollSpawnLoc(t);
 
