@@ -12,7 +12,7 @@ function event_trade(e)
 	if(item_lib.check_turn_in(e.self, e.trade, {item1 = 12990, item2 = 12755},1,text)) then --Scribblings, Stoneleer Emerald Plume
 		e.self:Say("Ha ha ha!! Fool! I have what I need. Now you are granted an audience with a noble sarnak lord, not my master. I am quite sure he shall do away with you. Ha ha ha!!");
 		e.other:QuestReward(e.self,0,0,0,0,0,5000);
-		e.other:MovePC(87,-4039,6280,-53); --Atheling Plague's Tower
+		e.other:MovePC(87,-4039,6280,-53,275); --Atheling Plague's Tower
 	end
 	item_lib.return_items(e.self, e.other, e.trade)
 end

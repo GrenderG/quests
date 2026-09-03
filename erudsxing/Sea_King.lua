@@ -28,7 +28,7 @@ function event_waypoint_arrive(e)
 		eq.debug("Boat to Erud (7) has reached its destination! Name is: " .. e.self:GetName() .. " Time is: " .. hour ..":" .. minute .. "", 1);
 		eq.get_entity_list():ForeachClient(
 			function(ent)
-				ent:MovePC(24,-1606,-584,0,-1);
+				ent:MovePC(24,-1606,-584,0,513);
 			end,
 			function(ent)
 				if(ent:GetBoatID() == 772) then

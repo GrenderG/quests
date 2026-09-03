@@ -5,7 +5,7 @@ function event_spawn(e)
 end
 
 function event_enter(e)
-	e.other:MovePC(31,-485,-476,73); -- Zone: butcher
+	e.other:MovePC(31,-485,-476,73,0); -- Zone: soldunga
 end
 
 -------------------------------------------------------------------------------------------------
