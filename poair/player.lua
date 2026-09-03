@@ -1,13 +1,14 @@
 function MoveGroup(zone, client, dist, x, y, z, h)
 	local group = client:GetGroup();
 	local raid = client:GetRaid();
+	local sourceX, sourceY, sourceZ = client:GetX(), client:GetY(), client:GetZ();
 
 	if ( group and group:GroupCount() > 0 ) then
 		for i = 0, 5 do
 			local member = group:GetMember(i):CastToClient();
 
 			if ( member.valid ) then
-				if ( member:CalculateDistance(client:GetX(), client:GetY(), client:GetZ()) < dist ) then
+				if ( member:CalculateDistance(sourceX, sourceY, sourceZ) < dist ) then
 					member:MovePC(zone, x, y, z, h*2);
 					if ( member:GetPet().valid ) then
 						if ( member:GetPet():Charmed() ) then
@@ -29,7 +30,7 @@ function MoveGroup(zone, client, dist, x, y, z, h)
 			
 			if ( member and member.valid and raid:GetGroup(member:GetName()) == raidGroupID ) then
 			
-				if ( member:CalculateDistance(client:GetX(), client:GetY(), client:GetZ()) < dist ) then
+				if ( member:CalculateDistance(sourceX, sourceY, sourceZ) < dist ) then
 					member:MovePC(zone, x, y, z, h*2);
 					if ( member:GetPet().valid ) then
 						if ( member:GetPet():Charmed() ) then
